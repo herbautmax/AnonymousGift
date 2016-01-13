@@ -1,0 +1,38 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block title %}Anonymous Gift{% endblock title %}
+{% block description %}Page perso{% endblock description %}
+
+{% block body %}
+
+<h1>Bienvenue {{ app.user.username|capitalize }}</h1>
+
+<h2>Liste des événements</h2>
+
+{% for event in events %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ event.name }}</h3>
+  </div>
+  <div class="panel-body">
+    {{ event.startdate }}
+  </div>
+</div>
+{% endfor %}
+
+<a href="">
+  <button type="button" class="btn btn-success">Créer un événement</button>
+</a>
+
+
+
+{% endblock body %}
+
+{% block javascripts %}
+{{ parent() }}
+
+{% endblock %}
