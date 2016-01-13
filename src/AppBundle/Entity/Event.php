@@ -9,7 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="event")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EventRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
+
 class Event
 {
     /**
@@ -52,7 +54,7 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="shared_token", type="string", length=255)
+     * @ORM\Column(name="shared_token", type="string", length=255, nullable=true)
      */
     private $sharedToken;
 
@@ -62,6 +64,14 @@ class Event
     */
     private $owner;
 
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist() {
+        $this->setToken(bin2hex(openssl_random_pseudo_bytes(16)));
+        $this->setSharedToken(bin2hex(openssl_random_pseudo_bytes(16)));
+        $this->setIsDistributed(0);
+    }
 
     /**
      * Get id

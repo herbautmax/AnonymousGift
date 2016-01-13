@@ -46,11 +46,15 @@ class EventController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $owner = $this->getUser();
+            $event->setOwner($owner);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();
 
-            return $this->redirectToRoute('event_show', array('id' => $event->getId()));
+            return $this->redirectToRoute('perso');
         }
 
         return $this->render('event/new.html.twig', array(
