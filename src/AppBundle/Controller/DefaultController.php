@@ -31,12 +31,12 @@ class DefaultController extends Controller
     $em = $this->getDoctrine()->getManager();
     $today = new \DateTime();
     $query = $em->createQuery(
-    'SELECT e.name, e.startdate
-    FROM AppBundle:Event e
-    LEFT JOIN e.owner o
-    WHERE o.id = :user
-    AND e.startdate > :today
-    ORDER BY e.name ASC'
+      'SELECT e.name, e.startdate, e.id
+      FROM AppBundle:Event e
+      LEFT JOIN e.owner o
+      WHERE o.id = :user
+      AND e.startdate > :today
+      ORDER BY e.name ASC'
     )->setParameter('user', $this->getUser()->getId())->setParameter('today', $today);
 
     $events = $query->getResult();
