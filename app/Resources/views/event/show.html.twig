@@ -3,6 +3,10 @@
 {% block container %}
 <h1>{{ event.name }}</h1>
 
+{% for message in app.session.flashbag.get('info') %}
+<div class="alert alert-success" role="alert"> {{ message }}</div>
+{% endfor %}
+
 <table class="table table-striped">
 
   <tbody>
@@ -26,10 +30,23 @@
       <th>Sharedtoken</th>
       <td>{{ event.sharedToken }}</td>
     </tr>
+    <tr>
+      <th>Attendees</th>
+      <td>
+        {{ form_start(form, {'attr': {'class': 'form-inline'} }) }}
+        <div class="form-group">
+          {{ form_label(form.email, 'Email' , { 'label_attr': {} }) }}
+          {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+        {{ form_errors(form.email) }}
+        {{ form_widget(form.submit, { 'attr': {'class': 'btn btn-primary', 'size': '12'} }) }}
+        {{ form_end(form) }}
+      </td>
+    </tr>
   </tbody>
 </table>
 
-<a class="btn btn-default" href="{{ path('perso') }}" role="button">Retour</a>
+<a class="btn btn-default" href="{{ path('perso') }}" role="button">Back</a>
 <a class="btn btn-success" href="{{ path('event_edit', { 'id': event.id }) }}" role="button">Edit</a>
 
 

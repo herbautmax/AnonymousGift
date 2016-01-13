@@ -2,7 +2,7 @@
 
 {% block container %}
 
-<h2>Liste des événements</h2>
+<h2>Event list</h2>
 
 {% for event in events %}
 <a href="{{ path('event_show', { 'id': event.id }) }}">
@@ -18,7 +18,7 @@
 {% endfor %}
 
 <a href="{{ path('event_new') }}">
-  <button type="button" class="btn btn-success">Créer un événement</button>
+  <button type="button" class="btn btn-success">Create a new event</button>
 </a>
 
 {% endblock container %}
