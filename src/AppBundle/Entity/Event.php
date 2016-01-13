@@ -49,7 +49,7 @@ class Event
      *
      * @ORM\Column(name="is_distributed", type="boolean")
      */
-    private $isDistributed;
+    private $isDistributed = false;
 
     /**
      * @var string
@@ -70,7 +70,6 @@ class Event
     public function prePersist() {
         $this->setToken(bin2hex(openssl_random_pseudo_bytes(16)));
         $this->setSharedToken(bin2hex(openssl_random_pseudo_bytes(16)));
-        $this->setIsDistributed(0);
     }
 
     /**
