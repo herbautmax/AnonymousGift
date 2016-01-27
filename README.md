@@ -3,6 +3,15 @@ Anonymous Gift
 
 Symfony Anonymous Gift Project
 
+Done
+-----
+- Log in or Sign in
+- Show, create, edit events
+- Send mail to a new attendee
+
+
 To do
 -----
-- Adding an Event Listener to the Event Form Class () --> form as a type
+- Generate link to add a new attendee
+- Add new attendee
+- Create algorithm Anonymous gift
